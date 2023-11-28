@@ -1,0 +1,65 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /api/depot:
+    get:
+      tags:
+      - depot-controller
+      operationId: depot
+      parameters:
+      - name: depot
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Depot'
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Depot'
+components:
+  schemas:
+    Bus:
+      type: object
+      properties:
+        bus:
+          type: string
+        type:
+          type: string
+          enum:
+          - GROOT
+          - NORMAAL
+          - MINI
+    Depot:
+      type: object
+      properties:
+        stelplaats:
+          type: string
+        parking:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bus'
+        garage:
+          $ref: '#/components/schemas/Garage'
+    Garage:
+      type: object
+      properties:
+        groot:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bus'
+        normaal:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bus'
+        mini:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bus'
