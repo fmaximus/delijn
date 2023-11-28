@@ -27,7 +27,7 @@
             width:100%;
         }
 
-        .parkeerplaatsen_normaal{
+        .parkeerplaatsen_medium{
             width:50%;
         }
 
@@ -57,7 +57,7 @@
             background:#21A67A;
         }
 
-        .parkeerplaatsen_groot .wagen_mid{
+        .parkeerplaatsen_groot .wagen_normaal{
             width:50%;
             
             height:50px;
@@ -70,14 +70,14 @@
             background:#0091FF;
         }
 
-        .parkeerplaatsen_normaal .wagen_mid{
+        .parkeerplaatsen_medium .wagen_normaal{
             width:100%;
             
             height:50px;
             background:#FEDC00;
         }
 
-        .parkeerplaatsen_normaal .wagen_klein{
+        .parkeerplaatsen_medium .wagen_mini{
             width:50%;
             height:50px;
             background:#0091FF;
@@ -87,7 +87,7 @@
             text-align: center;
         }
 
-        .parkeerplaatsen_klein .wagen_klein{
+        .parkeerplaatsen_klein .wagen_mini{
             width:100%;
             height:50px;
             background:#0091FF;
