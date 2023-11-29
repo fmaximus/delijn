@@ -1,5 +1,5 @@
 // JSON-gegevens
-const url = 'localhost/api/depot'; // Replace with your API endpoint
+const url = '/api/depot'; // Replace with your API endpoint
 
 const input = {
 	stelplaats: "De Lijn Arsenaal",
