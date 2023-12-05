@@ -35,49 +35,68 @@ const input = {
 }
 
 const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json', // Set the content type to JSON
-      // Add any other headers required by the API
-    },
-    body: JSON.stringify(input) // Convert data to JSON string
-  };
+	method: 'POST',
+	headers: {
+		'Content-Type': 'application/json', // Set the content type to JSON
+		// Add any other headers required by the API
+	},
+	body: JSON.stringify(input) // Convert data to JSON string
+};
 
-  fetch(url, requestOptions)
-  .then(response => response.json()) // Parse the JSON response
-  .then(data => {
-      // Functie om div-elementen toe te voegen aan de DOM
-  function voegDivToe(bustype, garagetype, busNummer) {
-    // Maak een nieuw div-element
-    const div = document.createElement("div");
-    
-    // Stel de klasse in op basis van het type
-    div.className = 'wagen wagen_' + bustype.toLowerCase();
-    
-    // Voeg inhoud toe aan het div-element
-    div.innerHTML = `<p>${busNummer}</p>`;
-    
-    // Voeg het div-element toe aan de div met de klasse 'parkeetplaats_{type}'
-    document.querySelector(`.parkeerplaatsen_${garagetype.toLowerCase()}`).appendChild(div);
-  }
-  
-  // Loop door de garage en voeg div-elementen toe aan de DOM
-  for (const type in data.garage) {
-    if (data.garage.hasOwnProperty(type)) {
-      // Maak een div-element voor elk type en voeg het toe aan de DOM
-  
-  
-      // Loop door de bussen van elk type en voeg div-elementen toe aan de DOM
-      data.garage[type].forEach(bus => {
-        voegDivToe(bus.type, type, bus.bus);
-      });
-    }
-  }
-    
-  })
-  .catch(error => {
-    console.error('Error:', error); // Handle any errors
-  });
+(function() {
+	class Bus extends HTMLElement {
+		constructor() {
+			super();
+			const shadow = this.attachShadow({mode: 'open'});
+
+			const busNummer = this.bus;
+			const type = this.type;
+
+			shadow.innerHTML = `
+				<div class="wagen" data-size="${type}">
+					<p>${busNummer}</p>
+				</div>
+			`;
+		}
+	}
+	customElements.define('bus', Bus);
+})();
+
+fetch(url, requestOptions)
+		.then(response => response.json()) // Parse the JSON response
+		.then(data => {
+			// Functie om div-elementen toe te voegen aan de DOM
+			function voegDivToe(busType, parent, busNummer) {
+				// Maak een nieuw div-element
+				const div = document.createElement("bus");
+
+				// Stel de klasse in op basis van het type
+				div.className = 'wagen';
+
+				div.dataset.size = busType.toLowerCase();
+
+				// Voeg inhoud toe aan het div-element
+				div.innerHTML = `<p>${busNummer}</p>`;
+
+				// Voeg het div-element toe aan de div met de klasse 'parkeerplaats_{type}'
+				parent.appendChild(div);
+			}
+
+			// Loop door de garage en voeg div-elementen toe aan de DOM
+			for (const type of Object.keys(data.garage)) {
+					// Maak een div-element voor elk type en voeg het toe aan de DOM
+
+					const busLot = document.querySelector(`.parkeerplaatsen[data-size='${type.toLowerCase()}']`);
+
+					// Loop door de bussen van elk type en voeg div-elementen toe aan de DOM
+					data.garage[type].forEach(bus => {
+						voegDivToe(bus.type, busLot, bus.bus);
+					});
+				}
+		})
+		.catch(error => {
+			console.error('Error:', error); // Handle any errors
+		});
   
 
   

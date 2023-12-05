@@ -1,94 +1,84 @@
-        /* Your CSS styles can go here */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0.5rem;
-            background-color: rgb(250,250,250);
-        }
-        
-        #home {
-            
-            background:white;
-            margin:1rem;
-            padding:1rem;
-            border-radius: 25px;
-            filter:drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
-        }
-        .parkeerplaatsen{
-            
-            display: flex;
-            background:white;
-            
-            flex-wrap: wrap;
-            
-        }
+/* Your CSS styles can go here */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0.5rem;
+    background-color: rgb(250,250,250);
+}
 
-        .parkeerplaatsen_groot{
-            width:100%;
-        }
+#home {
+    background:white;
+    margin:1rem;
+    padding:1rem;
+    border-radius: 25px;
+    filter:drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+}
 
-        .parkeerplaatsen_medium{
-            width:50%;
-        }
+.parkeerplaatsen{
+    display: flex;
+    background:white;
 
-        .parkeerplaatsen_klein{
-            width:25%;
-        }
+    flex-wrap: wrap;
+    border: 2px grey dashed;
+}
 
-        .parkeerplaatsen .wagen{
-            border:1px solid white;
-            box-sizing: border-box;
-            margin-top:0.25rem;
-            border-radius:4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color:black;
-            font-weight: 700;
-        }
-        .parkeerplaatsen .wagen:hover{
-            cursor: pointer;
-            filter:brightness(1.1);
-        }
+.parkeerplaatsen[data-size='groot'] {
+    width:100%;
+}
 
-        .parkeerplaatsen_groot .wagen_groot{
-            width:100%;
-            height:50px;
-            background:#21A67A;
-        }
+.parkeerplaatsen[data-size='medium'] {
+    width:50%;
+}
 
-        .parkeerplaatsen_groot .wagen_normaal{
-            width:50%;
-            
-            height:50px;
-            background:#FEDC00;
-        }
+.parkeerplaatsen[data-size='klein'] {
+    width:25%;
+}
 
-        .parkeerplaatsen_groot .wagen_klein{
-            width:25%;
-            height:50px;
-            background:#0091FF;
-        }
+.parkeerplaatsen .wagen {
+    border:1px solid white;
+    box-sizing: border-box;
+    margin-top:0.25rem;
+    border-radius:4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:black;
+    font-weight: 700;
+    height:50px;
+}
 
-        .parkeerplaatsen_medium .wagen_normaal{
-            width:100%;
-            
-            height:50px;
-            background:#FEDC00;
-        }
+.parkeerplaatsen .wagen:hover{
+    cursor: pointer;
+    filter: brightness(1.1);
+}
 
-        .parkeerplaatsen_medium .wagen_mini{
-            width:50%;
-            height:50px;
-            background:#0091FF;
-        }
+.parkeerplaatsen .wagen[data-size='groot']{
+    background:#21A67A;
+}
 
-        footer{
-            text-align: center;
-        }
+.parkeerplaatsen .wagen[data-size='normaal']{
+    background:#FEDC00;
+}
 
-        .parkeerplaatsen_klein .wagen_mini{
-            width:100%;
-            height:50px;
-            background:#0091FF;
-        }
+.parkeerplaatsen .wagen[data-size='mini']{
+    background:#0091FF;
+}
+
+.parkeerplaatsen[data-size='groot'] .wagen[data-size='groot'],
+.parkeerplaatsen[data-size='medium'] .wagen[data-size='normaal'],
+.parkeerplaatsen[data-size='klein'] .wagen[data-size='mini'] {
+    width:100%;
+}
+
+.parkeerplaatsen[data-size='groot'] .wagen[data-size='normaal'],
+.parkeerplaatsen[data-size='medium'] .wagen[data-size='mini'] {
+    width:50%;
+}
+
+.parkeerplaatsen[data-size='groot'] .wagen[data-size='mini']{
+    width:25%;
+}
+
+footer {
+    text-align: center;
+}
